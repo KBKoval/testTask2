@@ -8,6 +8,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <package.shade.phase>package</package.shade.phase>
+        <myproject.root>${basedir}</myproject.root>
+        <final.name>task2</final.name>
     </properties>
 
     <parent>
@@ -87,7 +90,7 @@
     </dependencies>
 
     <build>
-        <finalName>task2</finalName>
+        <finalName>${final.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -108,6 +111,22 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <outputFile>${myproject.root}/${final.name}.jar</outputFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>${package.shade.phase}</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

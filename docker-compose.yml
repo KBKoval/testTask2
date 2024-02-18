@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  app:
+    container_name : task-container
+    image: i-task
+    ports:
+      - 8080:8080
+    build:
+      dockerfile: Dockerfile

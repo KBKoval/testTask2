@@ -28,6 +28,12 @@ dependencies {
 bootJar {
     archiveFileName = "task2.${archiveExtension.get()}"
 }
+task copyJar(type: Copy) {
+    from 'build/libs/task2.jar'
+    into './'
+}
+
+build.finalizedBy copyJar
 
 wrapper  {
     gradleVersion = '7.6.4'
