@@ -33,8 +33,12 @@ public class GetBestTopBookController {
             return  serviceParser.getAllBooks();
     }
 
+
     @GetMapping(value = "top10")
-    public List<Book> getTop10(@RequestParam(required = false, defaultValue = "-1",name="year") int year,@Valid @RequestParam(required = true, defaultValue = "publicationdate",name="column") String column,@Valid @RequestParam(required = true, defaultValue = "asc",name="sort") String sort) {
+    public List<Book> getTop10(
+            @RequestParam(required = false, defaultValue = "-1", name = "year") int year,
+            @Valid @RequestParam(required = true, name = "column") String column,
+            @Valid @RequestParam(required = true, name = "sort") String sort) {
         return serviceParser.getBooksTop(10, year, SortColum.valueOf(column.toUpperCase()), SortMethod.valueOf(sort.toUpperCase()));
     }
 }

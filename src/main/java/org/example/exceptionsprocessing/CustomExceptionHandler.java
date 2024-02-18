@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        List<String> errors = new ArrayList<>();//ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.toList());
+        List<String> errors = new ArrayList<>();
         errors.addAll(ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage()).collect(Collectors.toList()));
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.add(error.getField() + ": " + error.getDefaultMessage());
@@ -46,7 +46,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorsMessage errorsMessage = new ErrorsMessage(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
         return new ResponseEntity<>(errorsMessage, new HttpHeaders(), errorsMessage.getStatus());
     }
-
 
     @ExceptionHandler({ConstraintViolationException.class, IllegalArgumentException.class,IllegalStateException.class})
     public ResponseEntity<Object> handleMethodArgumentTypeMismatch(RuntimeException ex, WebRequest request) {
