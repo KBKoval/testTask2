@@ -14,7 +14,7 @@
   # Сборка: 
       docker compose build  
   # Run: 
-     docker compose up -d как сервиса
+     docker compose up -d (как сервиса)
   # Копирование файла: 
      docker cp goodreads_top100_from1980to2023_final.csv task-container:/usr/local/data
 
