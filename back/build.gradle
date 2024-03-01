@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.1'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+}
+
+group = 'org.example'
+version = '0.0.2'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.8'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.2.1'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.1'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+}
+
+bootJar {
+    archiveFileName = "task2.${archiveExtension.get()}"
+}
+task copyJar(type: Copy) {
+    from 'build/libs/task2.jar'
+    into './'
+}
+
+build.finalizedBy copyJar
+
+wrapper  {
+    gradleVersion = '7.6.4'
+}
