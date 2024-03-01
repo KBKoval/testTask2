@@ -18,5 +18,12 @@
   # Копирование файла: 
      docker cp goodreads_top100_from1980to2023_final.csv task-container:/usr/local/data
 
-# Bat file для выполнения всех задач: 
+
+# Client : 
+    docker
+    Node.js
+    Webix
+![Alt text](scr.png?raw=true "Screen Back+Client")
+
+# Bat file для выполнения всех задач:
     rundocker.bat
